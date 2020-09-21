@@ -1,0 +1,9 @@
+.form-label {
+  display: inline-flex;
+  margin-bottom: 0.375rem;
+  align-self: flex-start; /*it needs in case, when component will be inside flex-container*/
+}
+
+.form-label--primary {
+  font-size: 0.75rem;
+}

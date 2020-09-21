@@ -14,7 +14,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "serve": "nodemon --watch ./data.json ./server.js"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -30,5 +31,15 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "classnames": "^2.2.6",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "lodash.isempty": "^4.4.0",
+    "nodemon": "^2.0.4",
+    "prop-types": "^15.7.2",
+    "react-lazyload": "^3.0.0",
+    "react-router-dom": "^5.2.0"
   }
 }

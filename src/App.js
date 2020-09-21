@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react';
+import { ImageGallery } from './components';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const responseImage = fetch('http://localhost:3002')
+  .then(response => {
+    if (!response.ok) {
+      throw Error('Fetching Error!');
+    }
+    return response.json();
+  });
+
+const App = () => {
+  const [galleryData, setGalleryData] = useState([]);
+
+  useEffect(() => {
+    responseImage.then(data => {
+      const { gallery } = data;
+      console.log(data); // Print out response result
+      setGalleryData(gallery);
+    })
+    .catch(error => {
+      throw Error(error.message);
+    });
+  }, []);
+
+  return <ImageGallery galleryData={galleryData} />;
 }
 
 export default App;

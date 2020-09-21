@@ -1,0 +1,30 @@
+.button {
+  font-size: 1rem;
+  height: 2.5rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.button--primary {
+  color: #222;
+  background-color: #fff;
+  border: 0;
+  -webkit-appearance: none;
+  box-shadow: 0 0 1rem rgba(0,0,0,0.5);
+}
+
+.button--primary:hover,
+.button--primary:focus {
+  background-color: #f2f2f2;
+}
+
+.button--primary:active {
+  background-color: #d5d5d5;
+}
+
+.button--primary:disabled {
+  background-color: #333;
+  color: #999;
+  cursor: not-allowed;
+  box-shadow: none;
+}

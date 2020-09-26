@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import cx from 'classnames';
 import './style.css';
 import PropTypes from 'prop-types';
@@ -8,7 +8,8 @@ const FormLabel = ({ value, htmlFor, theme, isHidden }) => {
     'form-label', {
       [`form-label--${theme}`]: theme,
       'visually-hidden': isHidden,
-    });
+    }
+  );
 
   return (
     <label className={classNames} htmlFor={htmlFor}>{value}</label>
@@ -31,4 +32,4 @@ FormLabel.defaultProps = {
   theme: FormLabel.themes.primary,
 };
 
-export default React.memo(FormLabel);
+export default memo(FormLabel);

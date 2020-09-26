@@ -1,25 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import { ImageGallery } from './components';
 
-const responseImage = fetch('http://localhost:3002')
-  .then(response => {
-    if (!response.ok) {
-      throw Error('Fetching Error!');
-    }
+// Delay (simulate slow API)
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+const fetchGalleryData = async () => {
+  try {
+    await delay(1000); // await delay (for test)
+    const response = await fetch('http://localhost:3002');
     return response.json();
-  });
+  } catch (e) {
+    throw new Error(e);
+  }
+}
 
 const App = () => {
   const [galleryData, setGalleryData] = useState([]);
 
   useEffect(() => {
-    responseImage.then(data => {
-      const { gallery } = data;
-      console.log(data); // Print out response result
+    fetchGalleryData().then(data => {
+      const { gallery} = data;
+      console.log(gallery); // print out gallery images data
       setGalleryData(gallery);
-    })
-    .catch(error => {
-      throw Error(error.message);
     });
   }, []);
 

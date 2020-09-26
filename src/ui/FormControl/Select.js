@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { memo } from 'react';
 import cx from 'classnames';
 import './input.css';
 import PropTypes from 'prop-types';
+import { areEqualProps } from '../../scripts';
 
 import { FormLabel } from '../../ui';
 
-const Select = ({ id, value, label, hideLabel, name, children, theme, onChange }) => {
+const Select = memo(({ id, value, label, hideLabel, name, children, theme, onChange }) => {
   const classNames = cx('form-control form-control--select', {
     [`form-control--${theme}`]: theme,
   });
@@ -27,11 +28,11 @@ const Select = ({ id, value, label, hideLabel, name, children, theme, onChange }
       </select>
     </>
   );
-};
+}, (prev, next) => prev.value === next.value);
 
 Select.themes = {
   primary: 'primary',
-}
+};
 
 Select.propTypes = {
   id: PropTypes.string.isRequired,
@@ -45,6 +46,7 @@ Select.propTypes = {
 };
 
 Select.defaultProps = {
+  children: null,
   hideLabel: false,
   theme: Select.themes.primary,
   onChange: () => {},

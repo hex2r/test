@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { memo } from 'react';
 import cx from 'classnames';
 import './range-control.css';
 import PropTypes from 'prop-types';
+import { areEqualProps } from '../../scripts';
 
 import { FormLabel } from '../../ui';
 
@@ -32,17 +33,21 @@ const RangeControl = ({
     <>
       <FormLabel value={label} htmlFor={id} isHidden={hideLabel} />
       <div className={classNames}>
-        <input
-          id={id}
-          name={name}
-          type="range"
-          className={`${componentClassName}__slider`}
-          max={max}
-          min={min}
-          step={step}
-          onChange={handleChange}
-          value={value}
-        />
+        <div className={`${componentClassName}__slider-container`}>
+          <span className={`${componentClassName}__min`}>{min}</span>
+          <input
+            id={id}
+            name={name}
+            type="range"
+            className={`${componentClassName}__slider`}
+            max={max}
+            min={min}
+            step={step}
+            onChange={handleChange}
+            value={value}
+          />
+          <span className={`${componentClassName}__max`}>{max}</span>
+        </div>
         <output className={`${componentClassName}__output`}>{value}{outputAfter}</output>
       </div>
     </>
@@ -77,4 +82,4 @@ RangeControl.defaultProps = {
   onChange: () => {},
 };
 
-export default RangeControl;
+export default memo(RangeControl, areEqualProps);

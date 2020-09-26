@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { memo, forwardRef } from 'react';
 import cx from 'classnames';
 import './input.css';
 import PropTypes from 'prop-types';
+import { areEqualProps } from '../../scripts';
 
 import { FormLabel } from '../../ui';
 
-const Input = ({
+const Input = forwardRef(({
   id,
   type,
   name,
@@ -19,24 +20,21 @@ const Input = ({
   onBlur,
   onChange,
   ...props
-}) => {
+}, ref) => {
   const classNames = cx(
     'form-control', {
       [`form-control--${theme}`]: theme,
       'is-invalid': errorMessage.length,
     },
   );
-  const handleChange = e => {
-    onChange(e);
-  };
-  const handleBlur = e => {
-    onBlur(e);
-  };
+  const handleChange = e => onChange(e);
+  const handleBlur = e => onBlur(e);
 
   return (
     <>
       <FormLabel htmlFor={id} value={label} isHidden={hideLabel} />
       <input
+        ref={ref}
         id={id}
         className={classNames}
         name={name}
@@ -53,7 +51,7 @@ const Input = ({
       {!!errorMessage.length && <div className="error-message">{errorMessage}</div>}
     </>
   );
-};
+});
 
 Input.themes = {
   primary: 'primary',
@@ -89,4 +87,4 @@ Input.defaultProps = {
   onChange: () => {},
 };
 
-export default Input;
+export default memo(Input, areEqualProps);

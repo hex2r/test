@@ -10,4 +10,5 @@ export const basicColors = {
   brown: 'Brown',
   orange: 'Orange',
   purple: 'Purple',
+  custom: 'Custom color',
 };

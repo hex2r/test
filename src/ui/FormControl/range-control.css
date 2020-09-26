@@ -1,10 +1,25 @@
 .range-control {
+  position: relative;
   display: flex;
   align-items: center;
 }
 
-.range-control__slider {
+.range-control__slider-container {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
   flex-grow: 1;
+}
+
+.range-control__output,
+.range-control__slider-container {
+  padding-top: 1rem;
+}
+
+.range-control__slider {
+  position: relative;
+  z-index: 2;
   -webkit-appearance: none;
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -15,7 +30,8 @@
   height: 0.5rem;
   cursor: pointer;
   background-color: #222;
-  border: 1px solid #111;
+  border-top: 1px solid #111;
+  border-bottom: 1px solid #111;
 }
 
 .range-control__slider::-webkit-slider-thumb {
@@ -40,4 +56,38 @@
   padding-left: 1rem;
   min-width: 4rem; /* temp solution: this is 5-digits value. It needs to prevent resizing */
   text-align: right;
+}
+
+.range-control__min,
+.range-control__max {
+  position: absolute;
+  top: 0;
+  font-size: 0.625rem;
+}
+
+.range-control__min {
+  left: 0;
+}
+
+.range-control__max {
+  right: 0;
+}
+
+.range-control__max::before,
+.range-control__min::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 100%;
+  margin-top: 2px;
+  border-left: 1px solid #fff;
+  height: 0.25rem;
+}
+
+.range-control__min::before {
+  left: 2px;
+}
+
+.range-control__max::before {
+  right: 2px;
 }
